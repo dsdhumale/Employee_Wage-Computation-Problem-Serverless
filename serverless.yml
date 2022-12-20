@@ -108,7 +108,7 @@
 service: my-service
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs18.x
   stage: dev
   region: us-east-1
 functions:
@@ -118,7 +118,41 @@ functions:
       - http:
           path: hello/get
           method: get
-  
-    
+  employeeAttendance:
+    handler: Functions/checkAttendence.employeeAttendance
+    events:
+      - http:
+          path: employeeAttendance/get
+          method: post
+  calculateDailyWages:
+    handler: Functions/calculateDailyWages.calculateDailyWages
+    events:
+      - http:
+          path: calculateDailyWages/get
+          method: post  
+  calculateWageForPartTime:
+    handler: Functions/calculateWageForPartTime.calculateWageForPartTime
+    events:
+      - http:
+          path: calculateWageForPartTime/get
+          method: post      
+  calculateWagesUsingSwitchCase:
+    handler: Functions/calculateWagesUsingSwitchCase.calculateWagesUsingSwitchCase
+    events:
+      - http:
+          path: calculateWagesUsingSwitchCase/get
+          method: post  
+  calculateMonthlyWage:
+    handler: Functions/calculateMonthlyWage.calculateMonthlyWage
+    events:
+      - http:
+          path: calculateMonthlyWage/get
+          method: post         
+  calculateWageForLimitedPeriod:
+    handler: Functions/calculateWageForLimitedPeriod.calculateWageForLimitedPeriod
+    events:
+      - http:
+          path: calculateWageForLimitedPeriod/get
+          method: post 
 plugins:
   - serverless-offline
